@@ -31,7 +31,7 @@ func init() {
   "info": {
     "description": "Flagr is a feature flagging, A/B testing and dynamic configuration microservice. The base path for all the APIs is \"/api/v1\".\n",
     "title": "Flagr",
-    "version": "1.1.10"
+    "version": "1.1.12"
   },
   "basePath": "/api/v1",
   "paths": {
@@ -1569,6 +1569,15 @@ func init() {
             "type": "string"
           },
           "x-omitempty": true
+        },
+        "flagTagsOperator": {
+          "description": "determine how flagTags is used to filter flags to be evaluated. OR extends the evaluation to those which contains at least one of the provided flagTags or AND limit the evaluation to those which contains all the flagTags.",
+          "type": "string",
+          "default": "ANY",
+          "enum": [
+            "ANY",
+            "ALL"
+          ]
         }
       }
     },
@@ -1668,6 +1677,15 @@ func init() {
             "type": "string",
             "minLength": 1
           }
+        },
+        "flagTagsOperator": {
+          "description": "determine how flagTags is used to filter flags to be evaluated. OR extends the evaluation to those which contains at least one of the provided flagTags or AND limit the evaluation to those which contains all the flagTags.",
+          "type": "string",
+          "default": "ANY",
+          "enum": [
+            "ANY",
+            "ALL"
+          ]
         }
       }
     },
@@ -2077,7 +2095,7 @@ func init() {
   "info": {
     "description": "Flagr is a feature flagging, A/B testing and dynamic configuration microservice. The base path for all the APIs is \"/api/v1\".\n",
     "title": "Flagr",
-    "version": "1.1.10"
+    "version": "1.1.12"
   },
   "basePath": "/api/v1",
   "paths": {
@@ -3617,6 +3635,15 @@ func init() {
             "type": "string"
           },
           "x-omitempty": true
+        },
+        "flagTagsOperator": {
+          "description": "determine how flagTags is used to filter flags to be evaluated. OR extends the evaluation to those which contains at least one of the provided flagTags or AND limit the evaluation to those which contains all the flagTags.",
+          "type": "string",
+          "default": "ANY",
+          "enum": [
+            "ANY",
+            "ALL"
+          ]
         }
       }
     },
@@ -3716,6 +3743,15 @@ func init() {
             "type": "string",
             "minLength": 1
           }
+        },
+        "flagTagsOperator": {
+          "description": "determine how flagTags is used to filter flags to be evaluated. OR extends the evaluation to those which contains at least one of the provided flagTags or AND limit the evaluation to those which contains all the flagTags.",
+          "type": "string",
+          "default": "ANY",
+          "enum": [
+            "ANY",
+            "ALL"
+          ]
         }
       }
     },
