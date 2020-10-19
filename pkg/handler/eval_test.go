@@ -6,8 +6,8 @@ import (
 	"github.com/checkr/flagr/pkg/entity"
 	"github.com/checkr/flagr/swagger_gen/models"
 	"github.com/checkr/flagr/swagger_gen/restapi/operations/evaluation"
-	"github.com/jinzhu/gorm"
 
+	"github.com/jinzhu/gorm"
 	"github.com/prashantv/gostub"
 	"github.com/stretchr/testify/assert"
 )
@@ -162,7 +162,7 @@ func TestEvalFlag(t *testing.T) {
 			FlagID:        int64(100),
 		})
 		assert.NotNil(t, result)
-		assert.NotNil(t, result.VariantID)
+		assert.NotZero(t, result.VariantID)
 	})
 
 	t.Run("test happy code path with flagKey", func(t *testing.T) {
@@ -175,7 +175,7 @@ func TestEvalFlag(t *testing.T) {
 			FlagKey:       "flag_key_100",
 		})
 		assert.NotNil(t, result)
-		assert.NotNil(t, result.VariantID)
+		assert.NotZero(t, result.VariantID)
 	})
 
 	t.Run("test happy code path with flagKey", func(t *testing.T) {
@@ -188,7 +188,7 @@ func TestEvalFlag(t *testing.T) {
 			FlagKey:       "flag_key_100",
 		})
 		assert.NotNil(t, result)
-		assert.NotNil(t, result.VariantID)
+		assert.NotZero(t, result.VariantID)
 	})
 
 	t.Run("test happy code path with multiple constraints", func(t *testing.T) {
@@ -215,19 +215,32 @@ func TestEvalFlag(t *testing.T) {
 				Operator:  models.ConstraintOperatorGT,
 				Value:     `1000`,
 			},
+			{
+				Model:     gorm.Model{ID: 503},
+				SegmentID: 200,
+				Property:  "city-name",
+				Operator:  models.ConstraintOperatorEQ,
+				Value:     `"SF"`,
+			},
 		}
 		f.PrepareEvaluation()
-		cache := &EvalCache{idCache: map[string]*entity.Flag{"100": &f}}
-		defer gostub.StubFunc(&GetEvalCache, cache).Reset()
+		ec := &EvalCache{}
+		ec.cache.Store(&cacheContainer{idCache: map[string]*entity.Flag{"100": &f}})
+		defer gostub.StubFunc(&GetEvalCache, ec).Reset()
 		result := EvalFlag(models.EvalContext{
-			EnableDebug:   true,
-			EntityContext: map[string]interface{}{"dl_state": "CA", "state": "CA", "rate": 2000},
-			EntityID:      "entityID1",
-			EntityType:    "entityType1",
-			FlagID:        int64(100),
+			EnableDebug: true,
+			EntityContext: map[string]interface{}{
+				"dl_state":  "CA",
+				"state":     "CA",
+				"rate":      2000,
+				"city-name": "SF",
+			},
+			EntityID:   "entityID1",
+			EntityType: "entityType1",
+			FlagID:     int64(100),
 		})
 		assert.NotNil(t, result)
-		assert.NotNil(t, result.VariantID)
+		assert.NotZero(t, result.VariantID)
 	})
 
 	t.Run("test multiple segments with the first segment 0% rollout", func(t *testing.T) {
@@ -237,8 +250,9 @@ func TestEvalFlag(t *testing.T) {
 		f.Segments[0].RolloutPercent = uint(0)
 
 		f.PrepareEvaluation()
-		cache := &EvalCache{idCache: map[string]*entity.Flag{"100": &f}}
-		defer gostub.StubFunc(&GetEvalCache, cache).Reset()
+		ec := &EvalCache{}
+		ec.cache.Store(&cacheContainer{idCache: map[string]*entity.Flag{"100": &f}})
+		defer gostub.StubFunc(&GetEvalCache, ec).Reset()
 		result := EvalFlag(models.EvalContext{
 			EnableDebug:   true,
 			EntityContext: map[string]interface{}{"dl_state": "CA", "state": "CA", "rate": 2000},
@@ -269,8 +283,10 @@ func TestEvalFlag(t *testing.T) {
 			},
 		}
 		f.PrepareEvaluation()
-		cache := &EvalCache{idCache: map[string]*entity.Flag{"100": &f}}
-		defer gostub.StubFunc(&GetEvalCache, cache).Reset()
+
+		ec := &EvalCache{}
+		ec.cache.Store(&cacheContainer{idCache: map[string]*entity.Flag{"100": &f}})
+		defer gostub.StubFunc(&GetEvalCache, ec).Reset()
 		result := EvalFlag(models.EvalContext{
 			EnableDebug:   true,
 			EntityContext: map[string]interface{}{"dl_state": "CA", "state": "NY"},
@@ -285,8 +301,9 @@ func TestEvalFlag(t *testing.T) {
 	t.Run("test enabled=false", func(t *testing.T) {
 		f := entity.GenFixtureFlag()
 		f.Enabled = false
-		cache := &EvalCache{idCache: map[string]*entity.Flag{"100": &f}}
-		defer gostub.StubFunc(&GetEvalCache, cache).Reset()
+		ec := &EvalCache{}
+		ec.cache.Store(&cacheContainer{idCache: map[string]*entity.Flag{"100": &f}})
+		defer gostub.StubFunc(&GetEvalCache, ec).Reset()
 		result := EvalFlag(models.EvalContext{
 			EnableDebug:   true,
 			EntityContext: map[string]interface{}{"dl_state": "CA"},
@@ -302,8 +319,9 @@ func TestEvalFlag(t *testing.T) {
 		t.Run("empty entityType case", func(t *testing.T) {
 			f := entity.GenFixtureFlag()
 			f.EntityType = ""
-			cache := &EvalCache{idCache: map[string]*entity.Flag{"100": &f}}
-			defer gostub.StubFunc(&GetEvalCache, cache).Reset()
+			ec := &EvalCache{}
+			ec.cache.Store(&cacheContainer{idCache: map[string]*entity.Flag{"100": &f}})
+			defer gostub.StubFunc(&GetEvalCache, ec).Reset()
 			result := EvalFlag(models.EvalContext{
 				EnableDebug:   true,
 				EntityContext: map[string]interface{}{"dl_state": "CA"},
@@ -312,14 +330,15 @@ func TestEvalFlag(t *testing.T) {
 				FlagID:        int64(100),
 			})
 			assert.NotNil(t, result)
-			assert.NotNil(t, result.VariantID)
+			assert.NotZero(t, result.VariantID)
 			assert.Equal(t, "entityType1", result.EvalContext.EntityType)
 		})
 		t.Run("override case", func(t *testing.T) {
 			f := entity.GenFixtureFlag()
 			f.EntityType = "some_entity_type"
-			cache := &EvalCache{idCache: map[string]*entity.Flag{"100": &f}}
-			defer gostub.StubFunc(&GetEvalCache, cache).Reset()
+			ec := &EvalCache{}
+			ec.cache.Store(&cacheContainer{idCache: map[string]*entity.Flag{"100": &f}})
+			defer gostub.StubFunc(&GetEvalCache, ec).Reset()
 			result := EvalFlag(models.EvalContext{
 				EnableDebug:   true,
 				EntityContext: map[string]interface{}{"dl_state": "CA"},
@@ -328,10 +347,25 @@ func TestEvalFlag(t *testing.T) {
 				FlagID:        int64(100),
 			})
 			assert.NotNil(t, result)
-			assert.NotNil(t, result.VariantID)
+			assert.NotZero(t, result.VariantID)
 			assert.NotEqual(t, "entityType1", result.EvalContext.EntityType)
 			assert.Equal(t, "some_entity_type", result.EvalContext.EntityType)
 		})
+	})
+}
+
+func TestEvalFlagsByTags(t *testing.T) {
+	defer gostub.StubFunc(&logEvalResult).Reset()
+
+	t.Run("test happy code path", func(t *testing.T) {
+		defer gostub.StubFunc(&GetEvalCache, GenFixtureEvalCache()).Reset()
+		results := EvalFlagsByTags(models.EvalContext{
+			EnableDebug:   true,
+			EntityContext: map[string]interface{}{"dl_state": "CA"},
+			FlagTags:      []string{"tag1", "tag2"},
+		})
+		assert.NotZero(t, len(results))
+		assert.NotZero(t, results[0].VariantID)
 	})
 }
 
@@ -408,4 +442,34 @@ func TestRateLimitPerFlagConsoleLogging(t *testing.T) {
 			rateLimitPerFlagConsoleLogging(r)
 		}
 	})
+}
+
+func BenchmarkEvalFlag(b *testing.B) {
+	b.StopTimer()
+	defer gostub.StubFunc(&logEvalResult).Reset()
+	defer gostub.StubFunc(&GetEvalCache, GenFixtureEvalCache()).Reset()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		EvalFlag(models.EvalContext{
+			EntityContext: map[string]interface{}{"dl_state": "CA"},
+			EntityID:      "entityID1",
+			EntityType:    "entityType1",
+			FlagID:        int64(100),
+		})
+	}
+}
+
+func BenchmarkEvalFlagsByTags(b *testing.B) {
+	b.StopTimer()
+	defer gostub.StubFunc(&logEvalResult).Reset()
+	defer gostub.StubFunc(&GetEvalCache, GenFixtureEvalCache()).Reset()
+	b.StartTimer()
+	for i := 0; i < b.N; i++ {
+		EvalFlagsByTags(models.EvalContext{
+			EntityContext: map[string]interface{}{"dl_state": "CA"},
+			EntityID:      "entityID1",
+			EntityType:    "entityType1",
+			FlagTags:      []string{"tag1", "tag2"},
+		})
+	}
 }

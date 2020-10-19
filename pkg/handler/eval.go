@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math/rand"
+	"sync"
 	"time"
 
 	"github.com/checkr/flagr/pkg/config"
@@ -50,17 +51,19 @@ func (e *eval) PostEvaluationBatch(params evaluation.PostEvaluationBatchParams) 
 	flagIDs := params.Body.FlagIDs
 	flagKeys := params.Body.FlagKeys
 	flagTags := params.Body.FlagTags
+	flagTagsOperator := params.Body.FlagTagsOperator
 	results := &models.EvaluationBatchResponse{}
 
 	// TODO make it concurrent
 	for _, entity := range entities {
 		if len(flagTags) > 0 {
 			evalContext := models.EvalContext{
-				EnableDebug:   params.Body.EnableDebug,
-				EntityContext: entity.EntityContext,
-				EntityID:      entity.EntityID,
-				EntityType:    entity.EntityType,
-				FlagTags:      flagTags,
+				EnableDebug:      params.Body.EnableDebug,
+				EntityContext:    entity.EntityContext,
+				EntityID:         entity.EntityID,
+				EntityType:       entity.EntityType,
+				FlagTags:         flagTags,
+				FlagTagsOperator: flagTagsOperator,
 			}
 			evalResults := EvalFlagsByTags(evalContext)
 			results.EvaluationResults = append(results.EvaluationResults, evalResults...)
@@ -132,8 +135,7 @@ var LookupFlag = func(evalContext models.EvalContext) *entity.Flag {
 
 var EvalFlagsByTags = func(evalContext models.EvalContext) []*models.EvalResult {
 	cache := GetEvalCache()
-
-	fs := cache.GetByTags(evalContext.FlagTags)
+	fs := cache.GetByTags(evalContext.FlagTags, evalContext.FlagTagsOperator)
 	results := []*models.EvalResult{}
 	for _, f := range fs {
 		results = append(results, EvalFlagWithContext(f, evalContext))
@@ -312,19 +314,15 @@ func debugConstraintMsg(enableDebug bool, expr conditions.Expr, m map[string]int
 	return fmt.Sprintf("constraint not match. constraint: %s, entity_context: %+v.", expr, m)
 }
 
-var rateLimitMap = make(map[uint]*ratelimit.RateLimiter)
+var rateLimitMap = sync.Map{}
 
 var rateLimitPerFlagConsoleLogging = func(r *models.EvalResult) {
 	flagID := util.SafeUint(r.FlagID)
-	rl, ok := rateLimitMap[flagID]
-	if !ok {
-		rl = ratelimit.New(
-			config.Config.RateLimiterPerFlagPerSecondConsoleLogging,
-			time.Second,
-		)
-		rateLimitMap[flagID] = rl
-	}
-	if !rl.Limit() {
+	rl, _ := rateLimitMap.LoadOrStore(flagID, ratelimit.New(
+		config.Config.RateLimiterPerFlagPerSecondConsoleLogging,
+		time.Second,
+	))
+	if !rl.(*ratelimit.RateLimiter).Limit() {
 		jsonStr, _ := json.Marshal(struct{ FlagEvalResult *models.EvalResult }{FlagEvalResult: r})
 		fmt.Println(string(jsonStr))
 	}

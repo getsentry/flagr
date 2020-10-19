@@ -71,7 +71,12 @@ var Config = struct {
 	DBConnectionRetryDelay    time.Duration `env:"FLAGR_DB_DBCONNECTION_RETRY_DELAY" envDefault:"100ms"`
 
 	// CORSEnabled - enable CORS
-	CORSEnabled bool `env:"FLAGR_CORS_ENABLED" envDefault:"true"`
+	CORSEnabled          bool     `env:"FLAGR_CORS_ENABLED" envDefault:"true"`
+	CORSAllowCredentials bool     `env:"FLAGR_CORS_ALLOW_CREDENTIALS" envDefault:"true"`
+	CORSAllowedHeaders   []string `env:"FLAGR_CORS_ALLOWED_HEADERS" envDefault:"Origin,Accept,Content-Type,X-Requested-With,Authorization,Time_Zone" envSeparator:","`
+	CORSAllowedMethods   []string `env:"FLAGR_CORS_ALLOWED_METHODS" envDefault:"GET,POST,PUT,DELETE,PATCH" envSeparator:","`
+	CORSAllowedOrigins   []string `env:"FLAGR_CORS_ALLOWED_ORIGINS" envDefault:"*" envSeparator:","`
+	CORSExposedHeaders   []string `env:"FLAGR_CORS_EXPOSED_HEADERS" envDefault:"WWW-Authenticate" envSeparator:","`
 
 	// SentryEnabled - enable Sentry and Sentry DSN
 	SentryEnabled     bool   `env:"FLAGR_SENTRY_ENABLED" envDefault:"false"`
@@ -174,7 +179,7 @@ var Config = struct {
 	*/
 	JWTAuthEnabled              bool     `env:"FLAGR_JWT_AUTH_ENABLED" envDefault:"false"`
 	JWTAuthDebug                bool     `env:"FLAGR_JWT_AUTH_DEBUG" envDefault:"false"`
-	JWTAuthPrefixWhitelistPaths []string `env:"FLAGR_JWT_AUTH_WHITELIST_PATHS" envDefault:"/api/v1/evaluation,/static" envSeparator:","`
+	JWTAuthPrefixWhitelistPaths []string `env:"FLAGR_JWT_AUTH_WHITELIST_PATHS" envDefault:"/api/v1/health,/api/v1/evaluation,/static" envSeparator:","`
 	JWTAuthExactWhitelistPaths  []string `env:"FLAGR_JWT_AUTH_EXACT_WHITELIST_PATHS" envDefault:",/" envSeparator:","`
 	JWTAuthCookieTokenName      string   `env:"FLAGR_JWT_AUTH_COOKIE_TOKEN_NAME" envDefault:"access_token"`
 	JWTAuthSecret               string   `env:"FLAGR_JWT_AUTH_SECRET" envDefault:""`
@@ -196,7 +201,7 @@ var Config = struct {
 	BasicAuthEnabled              bool     `env:"FLAGR_BASIC_AUTH_ENABLED" envDefault:"false"`
 	BasicAuthUsername             string   `env:"FLAGR_BASIC_AUTH_USERNAME" envDefault:""`
 	BasicAuthPassword             string   `env:"FLAGR_BASIC_AUTH_PASSWORD" envDefault:""`
-	BasicAuthPrefixWhitelistPaths []string `env:"FLAGR_BASIC_AUTH_WHITELIST_PATHS" envDefault:"/api/v1/flags,/api/v1/evaluation" envSeparator:","`
+	BasicAuthPrefixWhitelistPaths []string `env:"FLAGR_BASIC_AUTH_WHITELIST_PATHS" envDefault:"/api/v1/health,/api/v1/flags,/api/v1/evaluation" envSeparator:","`
 	BasicAuthExactWhitelistPaths  []string `env:"FLAGR_BASIC_AUTH_EXACT_WHITELIST_PATHS" envDefault:"" envSeparator:","`
 
 	// WebPrefix - base path for web and API

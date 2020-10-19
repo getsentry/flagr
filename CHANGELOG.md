@@ -1,5 +1,57 @@
 # Changelog
 
+## [1.1.12](https://github.com/checkr/flagr/tree/1.1.12) (2020-09-16)
+
+[Full Changelog](https://github.com/checkr/flagr/compare/1.1.11...1.1.12)
+
+**Closed issues:**
+
+- Constrain using CONTAINS filter always fails.  [\#400](https://github.com/checkr/flagr/issues/400)
+- "fatal error" when calling Batch Eval with Tags at Volume [\#398](https://github.com/checkr/flagr/issues/398)
+
+**Merged pull requests:**
+
+- Bump to 1.1.12 [\#405](https://github.com/checkr/flagr/pull/405) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Bump to go1.15 [\#404](https://github.com/checkr/flagr/pull/404) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Bump npm packages [\#403](https://github.com/checkr/flagr/pull/403) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Refactor eval cache with atomic.Value [\#402](https://github.com/checkr/flagr/pull/402) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Add benchmark [\#401](https://github.com/checkr/flagr/pull/401) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Remove margin on compact class [\#399](https://github.com/checkr/flagr/pull/399) ([zakazai](https://github.com/zakazai))
+- Update changelog [\#397](https://github.com/checkr/flagr/pull/397) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Update Changelog [\#396](https://github.com/checkr/flagr/pull/396) ([zhouzhuojie](https://github.com/zhouzhuojie))
+
+## [1.1.11](https://github.com/checkr/flagr/tree/1.1.11) (2020-09-08)
+
+[Full Changelog](https://github.com/checkr/flagr/compare/1.1.10...1.1.11)
+
+**Implemented enhancements:**
+
+- \[feat\] restore deleted flags [\#215](https://github.com/checkr/flagr/issues/215)
+
+**Closed issues:**
+
+- Feat: Support semantic versioning in Constraint [\#391](https://github.com/checkr/flagr/issues/391)
+- CORS Error with Custom Headers [\#387](https://github.com/checkr/flagr/issues/387)
+- MYSQL image compatibility [\#386](https://github.com/checkr/flagr/issues/386)
+- Added a port to work in the browser, would love a link to the project for everyone to use [\#376](https://github.com/checkr/flagr/issues/376)
+- Different API description in same flagr version \(docker vs github\) [\#373](https://github.com/checkr/flagr/issues/373)
+- Fix xss of mavon-editor in flagr UI [\#370](https://github.com/checkr/flagr/issues/370)
+- Add Tags for Organizational Management [\#362](https://github.com/checkr/flagr/issues/362)
+
+**Merged pull requests:**
+
+- Fix mysql8 compatibility [\#395](https://github.com/checkr/flagr/pull/395) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Bump to v1.1.11 [\#394](https://github.com/checkr/flagr/pull/394) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Tweak the style for deleted flags table [\#393](https://github.com/checkr/flagr/pull/393) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Replace UI flag note markdown editor [\#392](https://github.com/checkr/flagr/pull/392) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Update conditions to include dash constraint [\#390](https://github.com/checkr/flagr/pull/390) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Add cors env [\#388](https://github.com/checkr/flagr/pull/388) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Add list of client libraries to README [\#383](https://github.com/checkr/flagr/pull/383) ([SeanKilleen](https://github.com/SeanKilleen))
+- Bump elliptic from 6.5.2 to 6.5.3 in /browser/flagr-ui [\#381](https://github.com/checkr/flagr/pull/381) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Allow users the ability to restore deleted flags [\#379](https://github.com/checkr/flagr/pull/379) ([silent1mezzo](https://github.com/silent1mezzo))
+- Bump npm vendor for UI [\#377](https://github.com/checkr/flagr/pull/377) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Config option to exclude URLs from verbose middleware logging [\#375](https://github.com/checkr/flagr/pull/375) ([pacoguzman](https://github.com/pacoguzman))
+
 ## [1.1.10](https://github.com/checkr/flagr/tree/1.1.10) (2020-07-08)
 
 [Full Changelog](https://github.com/checkr/flagr/compare/1.1.9...1.1.10)
@@ -13,7 +65,6 @@
 - Bump release [\#374](https://github.com/checkr/flagr/pull/374) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Bump vendor and go swagger [\#372](https://github.com/checkr/flagr/pull/372) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Bump npm packages [\#371](https://github.com/checkr/flagr/pull/371) ([zhouzhuojie](https://github.com/zhouzhuojie))
-- Added Tags for Organizational Management [\#369](https://github.com/checkr/flagr/pull/369) ([fenriskiba](https://github.com/fenriskiba))
 
 ## [1.1.9](https://github.com/checkr/flagr/tree/1.1.9) (2020-05-29)
 
@@ -21,8 +72,11 @@
 
 **Merged pull requests:**
 
+- Added Tags for Organizational Management [\#369](https://github.com/checkr/flagr/pull/369) ([fenriskiba](https://github.com/fenriskiba))
 - Bump version [\#368](https://github.com/checkr/flagr/pull/368) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add exclude\_snapshots query param to export/sqlite [\#367](https://github.com/checkr/flagr/pull/367) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Add sentry env configuration [\#365](https://github.com/checkr/flagr/pull/365) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Autofocus search field [\#352](https://github.com/checkr/flagr/pull/352) ([Cull-Methi](https://github.com/Cull-Methi))
 
 ## [1.1.8](https://github.com/checkr/flagr/tree/1.1.8) (2020-04-17)
 
@@ -42,12 +96,10 @@
 
 **Merged pull requests:**
 
-- Add sentry env configuration [\#365](https://github.com/checkr/flagr/pull/365) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Bump 1.1.8 [\#360](https://github.com/checkr/flagr/pull/360) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Cleanup deps and remove sqlite3 system requirement [\#359](https://github.com/checkr/flagr/pull/359) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add flow to create simple boolean flag [\#354](https://github.com/checkr/flagr/pull/354) ([dcramer](https://github.com/dcramer))
 - Add basic auth support for interface [\#353](https://github.com/checkr/flagr/pull/353) ([jheth](https://github.com/jheth))
-- Autofocus search field [\#352](https://github.com/checkr/flagr/pull/352) ([Cull-Methi](https://github.com/Cull-Methi))
 - Improve UI consistency and contrast [\#349](https://github.com/checkr/flagr/pull/349) ([dcramer](https://github.com/dcramer))
 - Support additional characters for flag keys [\#348](https://github.com/checkr/flagr/pull/348) ([dcramer](https://github.com/dcramer))
 - Fix enabled query param [\#343](https://github.com/checkr/flagr/pull/343) ([zhouzhuojie](https://github.com/zhouzhuojie))
@@ -68,8 +120,6 @@
 - Add publish dockerhub action [\#336](https://github.com/checkr/flagr/pull/336) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Update UI version [\#335](https://github.com/checkr/flagr/pull/335) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add changelog [\#334](https://github.com/checkr/flagr/pull/334) ([zhouzhuojie](https://github.com/zhouzhuojie))
-- \[Feat\] Added Flagr version to UI [\#319](https://github.com/checkr/flagr/pull/319) ([wesleimp](https://github.com/wesleimp))
-- Add better error checking around 404s and actual database errors [\#318](https://github.com/checkr/flagr/pull/318) ([Cull-Methi](https://github.com/Cull-Methi))
 
 ## [1.1.6](https://github.com/checkr/flagr/tree/1.1.6) (2020-03-17)
 
@@ -102,6 +152,8 @@
 - Fix golangci-lint for context string key unittest [\#328](https://github.com/checkr/flagr/pull/328) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Fix json attachment validation and minimist dependency [\#327](https://github.com/checkr/flagr/pull/327) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Bump npm packages [\#321](https://github.com/checkr/flagr/pull/321) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- \[Feat\] Added Flagr version to UI [\#319](https://github.com/checkr/flagr/pull/319) ([wesleimp](https://github.com/wesleimp))
+- Add better error checking around 404s and actual database errors [\#318](https://github.com/checkr/flagr/pull/318) ([Cull-Methi](https://github.com/Cull-Methi))
 - Allow slashes in the flag name regex [\#316](https://github.com/checkr/flagr/pull/316) ([Cull-Methi](https://github.com/Cull-Methi))
 - Remove fmt.Println from Prometheus middleware [\#313](https://github.com/checkr/flagr/pull/313) ([gfloyd](https://github.com/gfloyd))
 - Fix swagger version [\#311](https://github.com/checkr/flagr/pull/311) ([zhouzhuojie](https://github.com/zhouzhuojie))
@@ -210,6 +262,7 @@
 - add note support to flags [\#243](https://github.com/checkr/flagr/pull/243) ([crberube](https://github.com/crberube))
 - Remove entity\_type statsd tag [\#242](https://github.com/checkr/flagr/pull/242) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Use web prefix for main API [\#234](https://github.com/checkr/flagr/pull/234) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Add release badge [\#227](https://github.com/checkr/flagr/pull/227) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
 ## [1.1.0](https://github.com/checkr/flagr/tree/1.1.0) (2019-03-19)
 
@@ -218,10 +271,6 @@
 **Implemented enhancements:**
 
 - Consolidate the evalResult for kafka, kinesis and pubsub logging [\#203](https://github.com/checkr/flagr/issues/203)
-
-**Merged pull requests:**
-
-- Remove required fields from evalResult swagger model [\#239](https://github.com/checkr/flagr/pull/239) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
 ## [1.0.15](https://github.com/checkr/flagr/tree/1.0.15) (2019-03-11)
 
@@ -235,9 +284,9 @@
 
 **Merged pull requests:**
 
+- Remove required fields from evalResult swagger model [\#239](https://github.com/checkr/flagr/pull/239) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add EvalDebugEnabled env variable [\#235](https://github.com/checkr/flagr/pull/235) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Refactor data recorder [\#233](https://github.com/checkr/flagr/pull/233) ([zhouzhuojie](https://github.com/zhouzhuojie))
-- Add release badge [\#227](https://github.com/checkr/flagr/pull/227) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Use English as default locale for flagr instead of Chinese [\#226](https://github.com/checkr/flagr/pull/226) ([lawrenceong](https://github.com/lawrenceong))
 - Bump version [\#224](https://github.com/checkr/flagr/pull/224) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
@@ -302,6 +351,7 @@
 **Merged pull requests:**
 
 - Fix segments evaluation [\#181](https://github.com/checkr/flagr/pull/181) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Add dd metrics [\#177](https://github.com/checkr/flagr/pull/177) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
 ## [1.0.11](https://github.com/checkr/flagr/tree/1.0.11) (2018-10-10)
 
@@ -316,13 +366,11 @@
 
 - Remove some dd metrics [\#179](https://github.com/checkr/flagr/pull/179) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add kafka data recorder dd metrics [\#178](https://github.com/checkr/flagr/pull/178) ([zhouzhuojie](https://github.com/zhouzhuojie))
-- Add dd metrics [\#177](https://github.com/checkr/flagr/pull/177) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Fix mysql query [\#176](https://github.com/checkr/flagr/pull/176) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add UI env for entity types override [\#175](https://github.com/checkr/flagr/pull/175) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Fix demo db and bump ui [\#173](https://github.com/checkr/flagr/pull/173) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add entity\_type override [\#171](https://github.com/checkr/flagr/pull/171) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Added config for base path for web UI [\#170](https://github.com/checkr/flagr/pull/170) ([SebastianOsuna](https://github.com/SebastianOsuna))
-- Fix operator width UI [\#169](https://github.com/checkr/flagr/pull/169) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Use pointer cursor for flags table rows [\#168](https://github.com/checkr/flagr/pull/168) ([marceloboeira](https://github.com/marceloboeira))
 - Add gzip middleware [\#167](https://github.com/checkr/flagr/pull/167) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
@@ -336,6 +384,7 @@
 
 **Merged pull requests:**
 
+- Fix operator width UI [\#169](https://github.com/checkr/flagr/pull/169) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Improve homepage UI [\#164](https://github.com/checkr/flagr/pull/164) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Fix 401 jwt middleware handling [\#163](https://github.com/checkr/flagr/pull/163) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Improve UI [\#162](https://github.com/checkr/flagr/pull/162) ([zhouzhuojie](https://github.com/zhouzhuojie))
@@ -427,6 +476,7 @@
 - Bump UI vendor [\#120](https://github.com/checkr/flagr/pull/120) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Bump conditions to support null json value [\#119](https://github.com/checkr/flagr/pull/119) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Use random entity id if it's nil [\#118](https://github.com/checkr/flagr/pull/118) ([zhouzhuojie](https://github.com/zhouzhuojie))
+- Use env to config eval logging [\#117](https://github.com/checkr/flagr/pull/117) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Fix test warning [\#116](https://github.com/checkr/flagr/pull/116) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
 ## [1.0.4](https://github.com/checkr/flagr/tree/1.0.4) (2018-04-12)
@@ -442,7 +492,6 @@
 
 **Merged pull requests:**
 
-- Use env to config eval logging [\#117](https://github.com/checkr/flagr/pull/117) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Use embeded file for env docs [\#114](https://github.com/checkr/flagr/pull/114) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Fix postgres string scan bug [\#113](https://github.com/checkr/flagr/pull/113) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Push http metrics with statsd [\#112](https://github.com/checkr/flagr/pull/112) ([marceloboeira](https://github.com/marceloboeira))
@@ -460,7 +509,6 @@
 - Fix constraints composition bug [\#104](https://github.com/checkr/flagr/pull/104) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add test coverage in pkg/handler [\#103](https://github.com/checkr/flagr/pull/103) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add console logging rate limiter [\#99](https://github.com/checkr/flagr/pull/99) ([zhouzhuojie](https://github.com/zhouzhuojie))
-- Add an option for middleware verbose logging [\#98](https://github.com/checkr/flagr/pull/98) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add cast package for safe cast [\#97](https://github.com/checkr/flagr/pull/97) ([zhouzhuojie](https://github.com/zhouzhuojie))
 
 ## [1.0.2](https://github.com/checkr/flagr/tree/1.0.2) (2018-01-16)
@@ -477,6 +525,7 @@
 
 **Merged pull requests:**
 
+- Add an option for middleware verbose logging [\#98](https://github.com/checkr/flagr/pull/98) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Add range in codecov.yml [\#96](https://github.com/checkr/flagr/pull/96) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Make SaveFlagSnapshot sync and increase coverage [\#95](https://github.com/checkr/flagr/pull/95) ([zhouzhuojie](https://github.com/zhouzhuojie))
 - Increase coverage [\#94](https://github.com/checkr/flagr/pull/94) ([zhouzhuojie](https://github.com/zhouzhuojie))
